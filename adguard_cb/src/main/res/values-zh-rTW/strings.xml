@@ -37,7 +37,6 @@
     <string name="copyrightInfoTextViewText">© 2009–%s。AdGuard 軟體有限公司\n保留所有的權利。</string>
     <string name="rateAdguardButtonText">評價 AdGuard</string>
     <string name="officialSiteLabelText">官方的網站</string>
-    <string name="forumLabelText">論壇</string>
     <string name="install_browsers">您沒有已安裝的受支援之瀏覽器！您可從 Google Play 安裝它們：</string>
     <string name="install_samsung_browser">安裝 Samsung 網際網路瀏覽器</string>
     <string name="install_yandex_browser">安裝 Yandex 瀏覽器</string>

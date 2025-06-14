@@ -37,7 +37,6 @@
     <string name="copyrightInfoTextViewText">© 2009–%s. Adguard Software Ltd.\nTous droits réservés.</string>
     <string name="rateAdguardButtonText">Évaluer AdGuard</string>
     <string name="officialSiteLabelText">Site officiel</string>
-    <string name="forumLabelText">Forum</string>
     <string name="install_browsers">Aucun navigateur compatible n\'est installé ! Vous pouvez en installer un depuis Google Play :</string>
     <string name="install_samsung_browser">Installer Samsung Internet Browser</string>
     <string name="install_yandex_browser">Installer Yandex Browser</string>
@@ -110,7 +109,7 @@
     <string name="select_browser_dialog_adguard_products_message">Consultez notre site Web pour voir les audres logiciels AdGuard</string>
     <string name="choose_your_browser">Choisir le navigateur :</string>
     <string name="chrome_dialog_title">Souhaitez-vous bloquer la pub sur Chrome ?</string>
-    <string name="chrome_dialog_text"><![CDATA[Chrome pour Android ne soutient plus aucune extension ou application bloqueuse de pub dés 2019.\nVous pouvez inciter les développeurs de Chrome à autoriser la compatibilité avec AdGuard et d'autres bloqueurs de contenu. Pour cela il faudra vous rendre sur <a href="https://bugs.chromium.org/p/chromium/issues/detail?id=113111">Chrome bug tracker</a> et voter pour relever le problème.]]></string>
+    <string name="chrome_dialog_text"><![CDATA[Chrome pour Android ne soutient plus aucune extension ou application bloqueuse de pub dés 2019.\nVous pouvez inciter les développeurs de Chrome à autoriser la compatibilité avec AdGuard et d\'autres bloqueurs de contenu. Pour cela il faudra vous rendre sur <a href="https://bugs.chromium.org/p/chromium/issues/detail?id=113111">Chrome bug tracker</a> et voter pour relever le problème.]]></string>
     <string name="back">Retour</string>
     <string name="close">Fermer</string>
     <string name="import_dialog_hint">URL ou chemin d’accès</string>

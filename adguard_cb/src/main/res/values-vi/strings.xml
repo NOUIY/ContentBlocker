@@ -35,7 +35,6 @@
     <string name="copyrightInfoTextViewText">© 2009–%s. Adguard Software Ltd.\nĐã đăng ký Bản quyền.</string>
     <string name="rateAdguardButtonText">Rate AdGuard</string>
     <string name="officialSiteLabelText">Trang chính thức</string>
-    <string name="forumLabelText">Diễn đàn</string>
     <string name="install_browsers">Bạn chưa cài đặt trình duyệt được hỗ trợ! Bạn có thể cài đặt chúng từ Google Play:</string>
     <string name="install_samsung_browser">Cài đặt trình duyệt Samsung Internet</string>
     <string name="install_yandex_browser">Cài đặt trình duyệt Yandex</string>

@@ -35,7 +35,7 @@ public class ReportToolUtils {
         List<Integer> enabledFilterIds = filterService.getEnabledFilterIds();
         String filters = StringUtils.join(enabledFilterIds, ".");
 
-        return String.format("%s?product_type=Con&product_version=%s&browser=Other&filters=%s",
+        return String.format("%s&product_type=Con&product_version=%s&browser=Other&filters=%s",
                 BuildConfig.reportToolUrl, versionName, filters);
     }
 }

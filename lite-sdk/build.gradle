@@ -1,0 +1,48 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion rootProject.targetSdkVersion
+
+    defaultConfig {
+        minSdkVersion rootProject.minSdkVersion
+        targetSdkVersion rootProject.targetSdkVersion
+        versionCode rootProject.version.code
+        versionName rootProject.version.name
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility rootProject.javaVersion
+        targetCompatibility rootProject.javaVersion
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation "androidx.appcompat:appcompat:$appCompatVersion"
+
+    // Apache commons
+    //noinspection GradleDependency
+    implementation "org.apache.commons:commons-lang3:$apacheCommonsLang3Version"
+    implementation "org.apache.commons:commons-collections4:$apacheCommonsCollections4Version"
+    implementation "commons-io:commons-io:$apacheCommonsIOVersion"
+
+    // Logger
+    implementation "org.slf4j:slf4j-android:$slf4jVersion"
+
+    // Json
+    implementation "org.codehaus.jackson:jackson-core-lgpl:$jacksonVersion"
+    implementation "org.codehaus.jackson:jackson-mapper-lgpl:$jacksonVersion"
+
+    testImplementation "junit:junit:$junitVersion"
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+}

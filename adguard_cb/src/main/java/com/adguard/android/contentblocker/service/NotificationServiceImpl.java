@@ -202,7 +202,7 @@ public class NotificationServiceImpl implements NotificationService {
                 .putExtras(countBundle);
 
         Notification notification = createDefaultNotificationBuilder(NotificationChannelMeta.RATE_APP_CHANNEL, context.getString(R.string.rate_app_dialog_title), context.getString(R.string.rate_app_summary))
-            .setContentIntent(PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT))
+            .setContentIntent(PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT | PendingIntent.FLAG_IMMUTABLE))
             .setAutoCancel(true)
             .setSmallIcon(R.drawable.ic_content_blocker)
             .setDefaults(Notification.DEFAULT_LIGHTS)

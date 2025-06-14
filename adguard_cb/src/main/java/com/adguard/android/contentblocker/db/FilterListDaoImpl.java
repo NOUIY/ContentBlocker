@@ -21,19 +21,24 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import androidx.annotation.Nullable;
+
 import com.adguard.android.contentblocker.commons.RawResources;
-import com.adguard.android.contentblocker.model.FilterList;
+import com.adguard.lite.sdk.model.FilterList;
+import com.adguard.lite.sdk.model.FiltersI18nJsonDto;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 /**
  * Filter list dao implementation (using db)
  */
 public class FilterListDaoImpl implements FilterListDao {
     private static final String FILTER_LISTS_TABLE = "filter_lists";
+    private static final String FILTER_LOCALIZATIONS_TABLE = "filters_localization";
     private static final String FILTER_LIST_ID = "filter_list_id";
     private static final String FILTER_LIST_NAME = "filter_name";
     private static final String FILTER_LIST_DESCRIPTION = "filter_description";
@@ -42,6 +47,7 @@ public class FilterListDaoImpl implements FilterListDao {
     private static final String FILTER_LIST_TIME_UPDATED = "time_updated";
     private static final String FILTER_LIST_TIME_LAST_DOWNLOADED = "time_last_downloaded";
     private static final String FILTER_LIST_DISPLAY_ORDER = "display_order";
+    private static final String FILTER_LANGUAGE_CODE = "language_code";
 
     private static final String[] COLUMNS = {
             FILTER_LIST_ID,
@@ -157,6 +163,26 @@ public class FilterListDaoImpl implements FilterListDao {
     }
 
     @Override
+    public void updateLocalizations(@Nullable FiltersI18nJsonDto dto) {
+        if (dto == null || dto.getFilters() == null) {
+            return;
+        }
+
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        try {
+            db.beginTransaction();
+            for (Map.Entry<Integer, Map<String, FiltersI18nJsonDto.NameDesc>> entry : dto.getFilters().entrySet()) {
+                for (Map.Entry<String, FiltersI18nJsonDto.NameDesc> nameDescEntry : entry.getValue().entrySet()) {
+                    updateLocalization(db, entry.getKey(), nameDescEntry.getKey(), nameDescEntry.getValue());
+                }
+            }
+            db.setTransactionSuccessful();
+        } finally {
+            db.endTransaction();
+        }
+    }
+
+    @Override
     public void updateFilter(FilterList filter) {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 
@@ -172,6 +198,25 @@ public class FilterListDaoImpl implements FilterListDao {
         } finally {
             db.endTransaction();
         }
+    }
+
+    /**
+     * Updates single filter localization in DB
+     * @param db       {@link SQLiteDatabase}
+     * @param filterId Filter ID
+     * @param langCode Language code
+     * @param nameDesc nameDesc {@link FiltersI18nJsonDto.NameDesc}
+     */
+    private void updateLocalization(SQLiteDatabase db, int filterId, String langCode, FiltersI18nJsonDto.NameDesc nameDesc) {
+        ContentValues values = new ContentValues();
+        values.put(FILTER_LANGUAGE_CODE, langCode);
+        values.put(FILTER_LIST_ID, filterId);
+        values.put(FILTER_LIST_NAME, nameDesc.getName());
+        String description = nameDesc.getDescription();
+        if (description != null) {
+            values.put(FILTER_LIST_DESCRIPTION, description);
+        }
+        db.update(FILTER_LOCALIZATIONS_TABLE, values, FILTER_LIST_ID + "=? AND " + FILTER_LANGUAGE_CODE + "=?", new String[]{Integer.toString(filterId), langCode});
     }
 
     private FilterList parseFilterList(Cursor cursor) {

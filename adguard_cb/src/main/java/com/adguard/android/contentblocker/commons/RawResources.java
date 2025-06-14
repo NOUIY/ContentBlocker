@@ -22,12 +22,16 @@ import android.view.inputmethod.InputMethodManager;
 import android.view.inputmethod.InputMethodSubtype;
 
 import com.adguard.android.contentblocker.R;
+
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.*;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
 
 /**
  * Class for obtaining resources
@@ -143,7 +147,7 @@ public class RawResources {
      */
     private static String getResourceAsString(Context context, int resourceId) {
         try {
-            return IOUtils.toString(context.getResources().openRawResource(resourceId), "UTF-8");
+            return IOUtils.toString(context.getResources().openRawResource(resourceId), StandardCharsets.UTF_8);
         } catch (Exception ex) {
             throw new RuntimeException("Error getting resource " + resourceId, ex);
         }

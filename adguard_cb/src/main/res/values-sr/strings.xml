@@ -37,7 +37,6 @@
     <string name="copyrightInfoTextViewText">© 2009–%s. Adguard Software Ltd.\nSva prava zadržana.</string>
     <string name="rateAdguardButtonText">Ocenite AdGuard</string>
     <string name="officialSiteLabelText">Službeni sajt</string>
-    <string name="forumLabelText">Forum</string>
     <string name="install_browsers">Nemate instaliran nijedan podržani preglednik. Možete ga instalirati sa Google Play prodavnice:</string>
     <string name="install_samsung_browser">Instaliraj Samsung Internet preglednik</string>
     <string name="install_yandex_browser">Instaliraj Yandex Browser</string>

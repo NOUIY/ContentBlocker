@@ -47,8 +47,6 @@ import android.widget.TextView;
 import com.adguard.android.contentblocker.R;
 import com.adguard.android.contentblocker.ServiceLocator;
 import com.adguard.android.contentblocker.commons.AppLink;
-import com.adguard.android.contentblocker.commons.BrowserUtils;
-import com.adguard.android.contentblocker.model.FilterList;
 import com.adguard.android.contentblocker.model.ReportType;
 import com.adguard.android.contentblocker.onboarding.OnboardingActivity;
 import com.adguard.android.contentblocker.service.FilterService;
@@ -56,6 +54,8 @@ import com.adguard.android.contentblocker.service.PreferencesService;
 import com.adguard.android.contentblocker.ui.utils.ActivityUtils;
 import com.adguard.android.contentblocker.ui.utils.NavigationHelper;
 import com.adguard.android.contentblocker.ui.utils.ReportToolUtils;
+import com.adguard.lite.sdk.commons.BrowserUtils;
+import com.adguard.lite.sdk.model.FilterList;
 
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;

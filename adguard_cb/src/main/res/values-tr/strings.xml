@@ -35,7 +35,6 @@
     <string name="copyrightInfoTextViewText">© 2009–%s. Adguard Software Ltd.\nTüm Hakları Saklıdır.</string>
     <string name="rateAdguardButtonText">AdGuard\'ı Oyla</string>
     <string name="officialSiteLabelText">Resmi site</string>
-    <string name="forumLabelText">Forum</string>
     <string name="install_browsers">Desteklenen tarayıcılar yüklü değil! Bunları Google Play\'den yükleyebilirsiniz:</string>
     <string name="install_samsung_browser">Samsung Internet Browser\'ı Yükle</string>
     <string name="install_yandex_browser">Yandex Browser Yükle</string>
@@ -104,6 +103,6 @@
     <string name="select_browser_dialog_adguard_products_message">Diğer AdGuard programlarını sitemizde inceleyin</string>
     <string name="choose_your_browser">Tarayıcınızı seçin:</string>
     <string name="chrome_dialog_title">Chrome\'daki reklamları engellemek ister misiniz?</string>
-    <string name="chrome_dialog_text"><![CDATA[Chrome 2019'dan itibaren herhangi bir reklam engelleme eklentisi veya uygulamasını desteklememektedir.\nChrome geliştiricilerinin AdGuard ve diğer içerik engelleyicilerine destek vermesi hususunda ısrar edebilirsiniz. Bunu yapmak için <a href="https://bugs.chromium.org/p/chromium/issues/detail?id=113111">Chrome bug tracker</a> sayfasını ziyaret edin ve konuyu destekleyin.]]></string>
+    <string name="chrome_dialog_text"><![CDATA[Chrome 2019\'dan itibaren herhangi bir reklam engelleme eklentisi veya uygulamasını desteklememektedir.\nChrome geliştiricilerinin AdGuard ve diğer içerik engelleyicilerine destek vermesi hususunda ısrar edebilirsiniz. Bunu yapmak için <a href="https://bugs.chromium.org/p/chromium/issues/detail?id=113111">Chrome bug tracker</a> sayfasını ziyaret edin ve konuyu destekleyin.]]></string>
     <string name="back">Geri</string>
 </resources>

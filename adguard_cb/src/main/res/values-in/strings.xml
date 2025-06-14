@@ -35,7 +35,6 @@
     <string name="copyrightInfoTextViewText">© 2008–%s. Adguard Software Ltd.\nSemua hak dilindungi.</string>
     <string name="rateAdguardButtonText">Beri nilai AdGuard</string>
     <string name="officialSiteLabelText">Situs resmi</string>
-    <string name="forumLabelText">Forum</string>
     <string name="install_browsers">Browser yang didukung tidak terpasang! Anda dapat memasangnya dari Google Play:</string>
     <string name="install_samsung_browser">Pasang Samsung Internet</string>
     <string name="install_yandex_browser">Pasang Yandex Browser</string>

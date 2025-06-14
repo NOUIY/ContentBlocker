@@ -37,7 +37,6 @@
     <string name="copyrightInfoTextViewText">© 2009–%s. Adguard Software Ltd.\nVse pravice so pridržane.</string>
     <string name="rateAdguardButtonText">Oceni AdGuard</string>
     <string name="officialSiteLabelText">Uradna stran</string>
-    <string name="forumLabelText">Forum</string>
     <string name="install_browsers">Nimate podprtih brskalnikov! Lahko jih namestite iz Google Play:</string>
     <string name="install_samsung_browser">Namesti Samsung internetni brskalnik</string>
     <string name="install_yandex_browser">Namesti brskalnik Yandex</string>

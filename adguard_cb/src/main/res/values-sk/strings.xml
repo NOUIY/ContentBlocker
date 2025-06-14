@@ -37,7 +37,6 @@
     <string name="copyrightInfoTextViewText">© 2009–%s. Adguard Software Ltd.\nVšetky práva vyhradené.</string>
     <string name="rateAdguardButtonText">Ohodnoťte AdGuard</string>
     <string name="officialSiteLabelText">Oficiálna stránka</string>
-    <string name="forumLabelText">Fórum</string>
     <string name="install_browsers">Nemáte nainštalovaný žiaden z podporovaných prehliadačov. Môžete ich inštalovať z Google Play:</string>
     <string name="install_samsung_browser">Inštalovať Samsung internetový prehliadač</string>
     <string name="install_yandex_browser">Inštalovať prehliadač Yandex</string>

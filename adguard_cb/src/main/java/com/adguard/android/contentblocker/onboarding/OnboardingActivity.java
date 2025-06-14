@@ -16,12 +16,14 @@
  */
 package com.adguard.android.contentblocker.onboarding;
 
+import android.annotation.SuppressLint;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
@@ -30,18 +32,26 @@ import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.Toolbar;
+
+import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.adguard.android.contentblocker.R;
 import com.adguard.android.contentblocker.ServiceLocator;
-import com.adguard.android.contentblocker.commons.BrowserUtils;
+import com.adguard.android.contentblocker.commons.AppLink;
+import com.adguard.android.contentblocker.ui.utils.ActivityUtils;
+import com.adguard.android.contentblocker.ui.utils.NavigationHelper;
+import com.adguard.lite.sdk.commons.BrowserUtils;
 import com.adguard.android.contentblocker.service.PreferencesService;
 import com.adguard.android.contentblocker.ui.ClickViewPager;
 
@@ -50,7 +60,9 @@ import org.apache.commons.collections4.CollectionUtils;
 import java.util.List;
 import java.util.Set;
 
-import static com.adguard.android.contentblocker.commons.BrowserUtils.YANDEX_BROWSER_PACKAGE;
+import static com.adguard.lite.sdk.commons.BrowserUtils.SAMSUNG_BROWSER_PACKAGE;
+import static com.adguard.lite.sdk.commons.BrowserUtils.YANDEX_BROWSER_PACKAGE;
+import static com.adguard.lite.sdk.commons.BrowserUtils.REFERRER;
 
 public class OnboardingActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -170,7 +182,7 @@ public class OnboardingActivity extends AppCompatActivity implements View.OnClic
                 viewPager.setCurrentItem(1, true);
             }
         } else if (page == 1) {
-            BrowserUtils.showBrowserInstallDialog(this);
+            showBrowserInstallDialog(this);
             startPackageReceiver();
         } else {
             onLastPageClick();
@@ -212,6 +224,63 @@ public class OnboardingActivity extends AppCompatActivity implements View.OnClic
                 viewPager.setCurrentItem(page - 1, true);
             }
         }
+    }
+
+    @SuppressLint("InflateParams")
+    public static void showBrowserInstallDialog(final Context context) {
+        View dialogLayout = LayoutInflater.from(context).inflate(R.layout.select_browser_dialog, null);
+
+        final AlertDialog dialog = new AlertDialog.Builder(context, R.style.AlertDialog)
+                .setNegativeButton(android.R.string.cancel, null)
+                .setView(dialogLayout).create();
+
+        View browserItem = dialogLayout.findViewById(R.id.browser_yandex);
+        browserItem.setOnClickListener(v -> {
+            ActivityUtils.startMarket(context, YANDEX_BROWSER_PACKAGE, REFERRER);
+            dialog.dismiss();
+        });
+
+        browserItem = dialogLayout.findViewById(R.id.browser_samsung);
+        browserItem.setOnClickListener(v -> {
+            ActivityUtils.startMarket(context, SAMSUNG_BROWSER_PACKAGE, null);
+            dialog.dismiss();
+        });
+
+        dialogLayout.findViewById(R.id.others_product_card).setOnClickListener(v -> {
+            showProductsDialog(context);
+        });
+
+        dialog.show();
+        centerDialogButton(dialog);
+    }
+
+    @SuppressLint("InflateParams")
+    private static void showProductsDialog(final Context context) {
+        View dialogLayout = LayoutInflater.from(context).inflate(R.layout.products_dialog, null);
+
+        final AlertDialog dialog = new AlertDialog.Builder(context, R.style.AlertDialog)
+                .setNegativeButton(R.string.back, null)
+                .setView(dialogLayout).create();
+
+        TextView textView = dialogLayout.findViewById(R.id.dialog_text);
+        textView.setText(Html.fromHtml(context.getString(R.string.chrome_dialog_text)));
+        textView.setMovementMethod(LinkMovementMethod.getInstance());
+
+        dialogLayout.findViewById(R.id.go_to_products).setOnClickListener(v -> {
+            String url = AppLink.Website.getOtherProductUrl(context, "chrome_dialog");
+            NavigationHelper.redirectToWebSite(context, url);
+        });
+
+        dialog.show();
+        centerDialogButton(dialog);
+    }
+
+    private static void centerDialogButton(AlertDialog dialog) {
+        // Center the button
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        layoutParams.weight = 1.0f;
+        layoutParams.gravity = Gravity.CENTER; //this is layout_gravity
+        dialog.getButton(AlertDialog.BUTTON_NEGATIVE).setLayoutParams(layoutParams);
     }
 
     private void removeAllFragments(FragmentManager fragmentManager) {

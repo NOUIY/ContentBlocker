@@ -35,7 +35,6 @@
     <string name="copyrightInfoTextViewText">© 2009–%s. Adguard Software Ltd。\n保留所有版权。</string>
     <string name="rateAdguardButtonText">评级 AdGuard</string>
     <string name="officialSiteLabelText">官方网站</string>
-    <string name="forumLabelText">论坛</string>
     <string name="install_browsers">您未完整受支持的浏览器！您可从 Google Play 安装它们：</string>
     <string name="install_samsung_browser">安装 Samsung Internet Browser</string>
     <string name="install_yandex_browser">安装 Yandex Browser</string>

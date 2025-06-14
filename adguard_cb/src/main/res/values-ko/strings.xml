@@ -37,7 +37,6 @@
     <string name="copyrightInfoTextViewText">© 2009–%s. Adguard Software Ltd.\nAll Rights Reserved.</string>
     <string name="rateAdguardButtonText">AdGuard 후기 남기기</string>
     <string name="officialSiteLabelText">공식 홈페이지</string>
-    <string name="forumLabelText">포험</string>
     <string name="install_browsers">지원되는 브라우저가 설치되어 있지 않습니다! 플레이 스토어에서 설치할 수 있습니다:</string>
     <string name="install_samsung_browser">삼성 인터넷 설치</string>
     <string name="install_yandex_browser">얀덱스 브라우저 설치</string>

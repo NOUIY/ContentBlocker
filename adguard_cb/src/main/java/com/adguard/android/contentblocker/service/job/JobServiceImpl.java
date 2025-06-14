@@ -64,7 +64,10 @@ public class JobServiceImpl implements JobService {
             }
             if (id != Id.UNKNOWN && !isJobPending(id) && canSchedule(job)) {
                 LOG.info("Scheduling job for ID {}...", id.getTag());
-                workManager.enqueue(job.createWorkRequestBuilder().addTag(versionTag).build());
+                invokeWorkManagerSafe("Error while scheduling job", null, workManager -> {
+                    workManager.enqueue(job.createWorkRequestBuilder().addTag(versionTag).build());
+                    return null;
+                });
             }
         }
     }
@@ -74,8 +77,13 @@ public class JobServiceImpl implements JobService {
         if (uuid == null) {
             return;
         }
-        workManager.cancelWorkById(uuid);
-        workManager.pruneWork();
+
+        LOG.info("Cancelling job UUID {}...", uuid);
+        invokeWorkManagerSafe("Error while canceling job", null, workManager -> {
+            workManager.cancelWorkById(uuid);
+            workManager.pruneWork();
+            return null;
+        });
     }
 
     @Override
@@ -87,8 +95,11 @@ public class JobServiceImpl implements JobService {
         for (Id id : ids) {
             String tag = id.getTag();
             LOG.info("Cancelling job ID {}...", tag);
-            workManager.cancelAllWorkByTag(tag);
-            workManager.pruneWork();
+            invokeWorkManagerSafe("Error while canceling jobs", null, workManager -> {
+                workManager.cancelAllWorkByTag(tag);
+                workManager.pruneWork();
+                return null;
+            });
         }
     }
 
@@ -107,12 +118,14 @@ public class JobServiceImpl implements JobService {
 
     @Override
     public boolean isJobPending(Id id) {
-        try {
-            return !workManager.getWorkInfosByTag(id.getTag()).get().isEmpty();
-        } catch (ExecutionException | InterruptedException e) {
-            LOG.warn("Error while checking whether job is pending or not", e);
-            return false;
-        }
+        return invokeWorkManagerSafe("Error while checking whether job is pending or not", false, workManager -> {
+            try {
+                return !workManager.getWorkInfosByTag(id.getTag()).get().isEmpty();
+            } catch (ExecutionException | InterruptedException e) {
+                LOG.warn("Error while checking whether job is pending or not", e);
+                return false;
+            }
+        });
     }
 
     private void deleteJobsWithoutTag(@NonNull String tag, @NonNull ListenableFuture<List<WorkInfo>> future) {
@@ -130,13 +143,16 @@ public class JobServiceImpl implements JobService {
                     uuids.add(info.getId());
                 }
             }
-            for (UUID uuid : uuids) {
-                LOG.info("Deleting old job {} as it has no tag {}", uuid, tag);
-                workManager.cancelWorkById(uuid);
-            }
-            if (!uuids.isEmpty()) {
-                workManager.pruneWork();
-            }
+
+            invokeWorkManagerSafe("Error while deleting old jobs", null, workManager -> {
+                for (UUID uuid : uuids) {
+                    workManager.cancelWorkById(uuid);
+                }
+                if (!uuids.isEmpty()) {
+                    workManager.pruneWork();
+                }
+                return null;
+            });
         } catch (ExecutionException | InterruptedException e) {
             LOG.warn("Error while deleting jobs without tag", e);
         }
@@ -147,5 +163,30 @@ public class JobServiceImpl implements JobService {
         LOG.info("Trying check job {} can schedule, state: {}", job.getId().getTag(), state);
         return state;
     }
-}
 
+    /**
+     * Some information from the Android documentation:
+     *      Always wrap a call to getAllPendingJobs(), schedule() and cancel() with a try catch as there
+     *      are platform bugs with several OEMs in API 23, which cause this method to throw Exceptions.
+     *      For reference: b/133556574, b/133556809, b/133556535
+     * <p>
+     * That means we should to wrap all methods' calls for WorkManager.
+     *
+     * @param logMessage message to be logged if an exception has been thrown
+     * @param defaultValue value to be returned if an exception has been thrown
+     * @param payload payload for [WorkManager] to be invoked safely
+     */
+    private <T> T invokeWorkManagerSafe(String logMessage, T defaultValue, WorkManagerPayload<T> payload) {
+        try {
+            return payload.invoke(workManager);
+        } catch (Throwable th) {
+            LOG.warn(logMessage, th);
+            return defaultValue;
+        }
+    }
+
+    @FunctionalInterface
+    private interface WorkManagerPayload<T> {
+        T invoke(WorkManager workManager);
+    }
+}

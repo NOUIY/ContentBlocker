@@ -55,18 +55,6 @@
 
                         <TextView
                             style="@style/textViewAboutLabel"
-                            android:text="@string/forumLabelText" />
-
-                        <TextView
-                            android:id="@+id/forumAdguardComLinkTextView"
-                            style="@style/buttonAboutLink"
-                            android:text="@string/forumAdguardComLink" />
-                    </TableRow>
-
-                    <TableRow>
-
-                        <TextView
-                            style="@style/textViewAboutLabel"
                             android:text="@string/githubLabelText" />
 
                         <TextView

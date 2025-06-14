@@ -24,20 +24,22 @@ import android.content.Intent;
 import android.net.Uri;
 
 import com.adguard.android.contentblocker.R;
-import com.adguard.android.contentblocker.ServiceApiClient;
-import com.adguard.android.contentblocker.commons.BrowserUtils;
+import com.adguard.android.contentblocker.commons.AppLink;
+import com.adguard.lite.sdk.ServiceApiClient;
+import com.adguard.lite.sdk.commons.BrowserUtils;
 import com.adguard.android.contentblocker.commons.StringHelperUtils;
 import com.adguard.android.contentblocker.commons.TextStatistics;
 import com.adguard.android.contentblocker.commons.concurrent.DispatcherThreadPool;
-import com.adguard.android.contentblocker.commons.io.IoUtils;
 import com.adguard.android.contentblocker.commons.network.NetworkUtils;
 import com.adguard.android.contentblocker.db.DbHelper;
 import com.adguard.android.contentblocker.db.FilterListDao;
 import com.adguard.android.contentblocker.db.FilterListDaoImpl;
 import com.adguard.android.contentblocker.db.FilterRuleDao;
 import com.adguard.android.contentblocker.db.FilterRuleDaoImpl;
-import com.adguard.android.contentblocker.model.FilterList;
 import com.adguard.android.contentblocker.ui.utils.ProgressDialogUtils;
+import com.adguard.lite.sdk.commons.io.IoUtils;
+import com.adguard.lite.sdk.model.FilterList;
+import com.adguard.lite.sdk.model.FiltersI18nJsonDto;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.io.FileUtils;
@@ -436,7 +438,7 @@ public class FilterServiceImpl implements FilterService {
         preferencesService.setLastUpdateCheck(new Date().getTime());
 
         try {
-            final List<FilterList> updated = ServiceApiClient.downloadFilterVersions(filters);
+            final List<FilterList> updated = ServiceApiClient.downloadFilterVersions(filters, AppLink.FilterApi.getCheckFilterVersionsUrl());
             if (updated == null) {
                 LOG.warn("Cannot download filter updates.");
                 return null;
@@ -476,6 +478,11 @@ public class FilterServiceImpl implements FilterService {
                 }
             }
 
+            LOG.info("Start filters localizations update");
+            final FiltersI18nJsonDto localizations = ServiceApiClient.downloadFiltersLocalizations(AppLink.FilterApi.getFiltersLocalizationsUrl());
+            filterListDao.updateLocalizations(localizations);
+            LOG.info(localizations != null ? "Filters localizations have been updated successfully" : "Filters localizations have not been updated");
+
             LOG.info("Finished checking filters updates.");
 
             return new ArrayList<>(map.values());
@@ -504,7 +511,7 @@ public class FilterServiceImpl implements FilterService {
     }
 
     private void updateFilterRules(int filterId) throws IOException {
-        final List<String> rules = ServiceApiClient.downloadFilterRules(filterId);
+        final List<String> rules = ServiceApiClient.downloadFilterRules(filterId, AppLink.FilterApi.getFilterUrl());
         filterRuleDao.setFilterRules(filterId, rules);
     }
 

@@ -37,7 +37,6 @@
     <string name="copyrightInfoTextViewText">© 2009–%s. Adguard Software Ltd.\nAll Rights Reserved.</string>
     <string name="rateAdguardButtonText">AdGuard を評価</string>
     <string name="officialSiteLabelText">公式サイト</string>
-    <string name="forumLabelText">フォーラム</string>
     <string name="install_browsers">対応しているプラウザがインストールされていません! Google Playストアよりインストールできます：</string>
     <string name="install_samsung_browser">Samsung Internet をインストール</string>
     <string name="install_yandex_browser">Yandexブラウザをインストール</string>

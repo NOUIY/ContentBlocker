@@ -9,17 +9,17 @@ android {
         config {
             keyAlias 'adguard'
             keyPassword 'adguard'
-            storeFile file('../adguard.keystore')
+            storeFile file('./adguard.keystore')
             storePassword 'adguard'
         }
     }
-    compileSdkVersion 28
+    compileSdkVersion rootProject.targetSdkVersion
     defaultConfig {
-        minSdkVersion 21
-        targetSdkVersion 28
+        minSdkVersion rootProject.minSdkVersion
+        targetSdkVersion rootProject.targetSdkVersion
         applicationId 'com.adguard.android.contentblocker'
-        versionCode 22000009
-        versionName '2.6.1'
+        versionCode rootProject.version.code
+        versionName rootProject.version.name
         signingConfig signingConfigs.config
     }
 
@@ -41,10 +41,11 @@ android {
         }
     }
 
-    def checkFilterVersionsUrl = "/extension/android-content-blocker/filters.json"
+    def checkFilterVersionsUrl = "/extension/android-content-blocker/filters.js"
+    def checkFilterLocalizationsUrl = "/extension/android-content-blocker/filters_i18n.js"
     def getFilterUrl = "/extension/android-content-blocker/filters/{0}_optimized.txt"
 
-    def reportToolUrl = '/new_issue.html'
+    def reportToolUrl = "action=report&app=content_blocker"
 
     def eulaUrl = "action=eula&app=content_blocker"
     def privatePolicyUrl = "action=private&app=content_blocker"
@@ -68,13 +69,13 @@ android {
             dimension "serverChannel"
 
             def filtersHost = 'https://filters.adtidy.org'
-            def reportToolHost = 'https://reports.adguard.com'
-            def forwardHost = "https://adguard.com/forward.html"
+            def forwardHost = "https://link.adtidy.org/forward.html"
 
             buildConfigField "String", "checkFilterVersionsUrl", '"' + filtersHost + checkFilterVersionsUrl + '"'
+            buildConfigField "String", "checkFilterLocalizationsUrl", '"' + filtersHost + checkFilterLocalizationsUrl + '"'
             buildConfigField "String", "getFilterUrl", '"' + filtersHost + getFilterUrl + '"'
 
-            buildConfigField "String", "reportToolUrl", '"' + reportToolHost + reportToolUrl + '"'
+            buildConfigField "String", "reportToolUrl", '"' + forwardHost + '?' + reportToolUrl + '"'
 
             buildConfigField "String", "eulaUrl", '"' + forwardHost + '?' + eulaUrl + '"'
             buildConfigField "String", "privateUrl", '"' + forwardHost + '?' + privatePolicyUrl + '"'
@@ -95,6 +96,7 @@ android {
             def forwardHost = "https://dev.adguard.com/forward.html"
 
             buildConfigField "String", "checkFilterVersionsUrl", '"' + filtersHost + checkFilterVersionsUrl + '"'
+            buildConfigField "String", "checkFilterLocalizationsUrl", '"' + filtersHost + checkFilterLocalizationsUrl + '"'
             buildConfigField "String", "getFilterUrl", '"' + filtersHost + getFilterUrl + '"'
 
             buildConfigField "String", "reportToolUrl", '"' + reportToolHost + reportToolUrl + '"'
@@ -112,8 +114,8 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility rootProject.javaVersion
+        targetCompatibility rootProject.javaVersion
     }
 
     packagingOptions {
@@ -129,27 +131,29 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation project(path: ':lite-sdk')
+
     // Apache commons
     //noinspection GradleDependency
-    implementation 'org.apache.commons:commons-lang3:3.5'
-    implementation 'org.apache.commons:commons-collections4:4.1'
-    implementation 'commons-io:commons-io:2.5'
+    implementation "org.apache.commons:commons-lang3:$apacheCommonsLang3Version"
+    implementation "org.apache.commons:commons-collections4:$apacheCommonsCollections4Version"
+    implementation "commons-io:commons-io:$apacheCommonsIOVersion"
 
     // Android library
-    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation "androidx.appcompat:appcompat:$appCompatVersion"
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'androidx.browser:browser:1.0.0'
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'com.google.android.material:material:1.0.0'
-    implementation 'androidx.work:work-runtime:2.2.0'
+    implementation 'androidx.work:work-runtime:2.7.1'
 
     // Logger
-    implementation 'org.slf4j:slf4j-android:1.7.7'
+    implementation "org.slf4j:slf4j-android:$slf4jVersion"
 
     // Json
-    implementation 'org.codehaus.jackson:jackson-core-lgpl:1.9.13'
-    implementation 'org.codehaus.jackson:jackson-mapper-lgpl:1.9.13'
+    implementation "org.codehaus.jackson:jackson-core-lgpl:$jacksonVersion"
+    implementation "org.codehaus.jackson:jackson-mapper-lgpl:$jacksonVersion"
 
-    testImplementation 'junit:junit:4.12'
+    testImplementation "junit:junit:$junitVersion"
 }

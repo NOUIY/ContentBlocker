@@ -25,8 +25,8 @@ import android.widget.CheckBox;
 import android.widget.TextView;
 
 import com.adguard.android.contentblocker.R;
-import com.adguard.android.contentblocker.model.FilterList;
 import com.adguard.android.contentblocker.service.FilterService;
+import com.adguard.lite.sdk.model.FilterList;
 
 import java.util.Date;
 

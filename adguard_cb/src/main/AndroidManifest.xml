@@ -10,6 +10,21 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
+    <!--  Permissions to get concrete packages for Android R+.
+    See https://developer.android.com/training/package-visibility
+    and https://developer.android.com/training/package-visibility/declaring
+    for more details.  -->
+    <queries>
+        <package android:name="com.android.vending" />
+
+        <package android:name="com.yandex.browser" />
+        <package android:name="com.yandex.browser.beta" />
+        <package android:name="com.yandex.browser.alpha" />
+
+        <package android:name="com.sec.android.app.sbrowser" />
+        <package android:name="com.sec.android.app.sbrowser.beta" />
+    </queries>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/app_icon"
@@ -27,7 +42,8 @@
         <activity
             android:name=".ui.MainActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme">
+            android:theme="@style/AppTheme"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -76,14 +92,15 @@
             android:theme="@style/AppTheme" />
 
         <provider
-            android:name=".FiltersContentProvider"
+            android:name="com.adguard.lite.sdk.FiltersContentProvider"
             android:authorities="com.adguard.android.contentblocker.contentBlocker.contentProvider"
             android:enabled="true"
             android:exported="true"
             android:grantUriPermissions="true" />
 
         <receiver android:name=".receiver.BootUpReceiver"
-            android:enabled="true">
+            android:enabled="true"
+            android:exported="false">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
                 <action android:name="android.intent.action.QUICKBOOT_POWERON" />
@@ -91,7 +108,8 @@
             </intent-filter>
         </receiver>
 
-        <receiver android:name=".receiver.UpdateReceiver">
+        <receiver android:name=".receiver.UpdateReceiver"
+            android:exported="false">
             <intent-filter>
                 <action android:name="android.intent.action.PACKAGE_REPLACED" />
                 <data android:scheme="package" android:path="com.adguard.android.contentblocker" />
@@ -100,7 +118,8 @@
         </receiver>
 
         <receiver android:name=".receiver.StarsCountReceiver"
-            android:enabled="true">
+            android:enabled="true"
+            android:exported="false">
             <intent-filter>
                 <action android:name="com.adguard.android.contentblocker.count_action_1" />
                 <action android:name="com.adguard.android.contentblocker.count_action_2" />

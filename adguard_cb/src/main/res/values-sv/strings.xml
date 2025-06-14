@@ -37,7 +37,6 @@
     <string name="copyrightInfoTextViewText">© 2009–%s. Adguard Software Ltd.\nAlla rättigheter förbehållna.</string>
     <string name="rateAdguardButtonText">Betygsätt AdGuard</string>
     <string name="officialSiteLabelText">Officiell webbplats</string>
-    <string name="forumLabelText">Forum</string>
     <string name="install_browsers">Du har ingen webbläsare installerad som stöds! Du kan installera en via Googles Playbutik.</string>
     <string name="install_samsung_browser">Installera Samsungs webbläsare</string>
     <string name="install_yandex_browser">Installera Yandex webbläsare</string>

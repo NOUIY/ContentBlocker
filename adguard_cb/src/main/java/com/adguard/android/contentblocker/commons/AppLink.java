@@ -37,6 +37,15 @@ public class AppLink {
         }
 
         /**
+         * Gets filters localizations url
+         *
+         * @return URL for checking filters localizations
+         */
+        public static String getFiltersLocalizationsUrl() {
+            return BuildConfig.checkFilterLocalizationsUrl;
+        }
+
+        /**
          * Gets filter get url
          *
          * @return Url for getting filter rules

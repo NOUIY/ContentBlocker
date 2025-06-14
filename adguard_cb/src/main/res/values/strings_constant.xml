@@ -15,6 +15,5 @@
     <string name="empty" translatable="false"></string>
     <string name="githubLink" translatable="false">github.com</string>
     <string name="adguardComLink" translatable="false">adguard.com</string>
-    <string name="forumAdguardComLink" translatable="false">forum.adguard.com</string>
     <string name="star_symbols" translatable="false">★</string>
 </resources>

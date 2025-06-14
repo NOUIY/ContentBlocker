@@ -35,7 +35,6 @@
     <string name="copyrightInfoTextViewText">© 2009–%s. Adguard Software Ltd.\nهمه حقوق محفوظ است.</string>
     <string name="rateAdguardButtonText">امتیاز به AdGuard</string>
     <string name="officialSiteLabelText">سایت رسمی</string>
-    <string name="forumLabelText">انجمن</string>
     <string name="install_browsers">شما مرورگر پشتیبانی شده ای نصب نکرده اید!میتوانید آنها را از گوگل پلی نصب کنید:</string>
     <string name="install_samsung_browser">نصب اینترنت سامسونگ</string>
     <string name="install_yandex_browser">نصب مرورگر یاندکس</string>

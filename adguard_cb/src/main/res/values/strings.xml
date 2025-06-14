@@ -37,7 +37,6 @@
     <string name="copyrightInfoTextViewText">© 2009–%s. Adguard Software Ltd.\nAll Rights Reserved.</string>
     <string name="rateAdguardButtonText">Rate AdGuard</string>
     <string name="officialSiteLabelText">Official site</string>
-    <string name="forumLabelText">Forum</string>
     <string name="install_at_least_one_app_for_the_website">You have no installed applications to open the website</string>
     <string name="install_browsers">You have no supported browsers installed! You can install them from Google Play:</string>
     <string name="install_samsung_browser">Install Samsung Internet Browser</string>

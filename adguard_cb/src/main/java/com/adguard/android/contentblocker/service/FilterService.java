@@ -19,11 +19,8 @@ package com.adguard.android.contentblocker.service;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
 
-import com.adguard.android.contentblocker.commons.BrowserUtils;
-import com.adguard.android.contentblocker.model.FilterList;
+import com.adguard.lite.sdk.model.FilterList;
 
 import java.util.List;
 import java.util.Set;

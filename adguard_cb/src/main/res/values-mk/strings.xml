@@ -35,7 +35,6 @@
     <string name="copyrightInfoTextViewText">© 2009–%s. Adguard Software Ltd.\nAll Rights Reserved.</string>
     <string name="rateAdguardButtonText">Оцени го AdGuard</string>
     <string name="officialSiteLabelText">Официјална страница</string>
-    <string name="forumLabelText">Форум</string>
     <string name="install_browsers">Вие немате поддржани прелистувачи инсталирано! Вие можете да ги инсталирате од Google Play:</string>
     <string name="install_samsung_browser">Инсталирајте го Samsung Интернет Прелистувачот</string>
     <string name="install_yandex_browser">Инсталирајте го Yandex Прелистувачот</string>

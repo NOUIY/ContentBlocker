@@ -35,7 +35,6 @@
     <string name="copyrightInfoTextViewText">© ২০০৯ - %s Adguard সফটওয়্যার লিমিটেড\nসর্বস্বত্ব সংরক্ষিত।</string>
     <string name="rateAdguardButtonText">AdGuard রেটিং দিন</string>
     <string name="officialSiteLabelText">অফিসিয়াল ওয়েবসাইট</string>
-    <string name="forumLabelText">ফোরাম</string>
     <string name="install_browsers">আপনার কোন অ্যাডগার্ড সমর্থিত ব্রাউজার ইনস্টল করা নেই! আপনি গুগল প্লে থেকে সমর্থিত ব্রাউজার ইনস্টল করতে পারেন:</string>
     <string name="install_samsung_browser">স্যামসাং ইন্টারনেট ব্রাউজার ইনস্টল করুন</string>
     <string name="install_yandex_browser">ইয়ান্ডেক্স ব্রাউজার ইনস্টল করুন</string>

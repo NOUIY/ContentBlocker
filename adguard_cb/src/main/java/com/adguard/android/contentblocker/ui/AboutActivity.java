@@ -47,10 +47,6 @@ public class AboutActivity extends AppCompatActivity {
         adguardComLinkTextView.setOnClickListener(v -> NavigationHelper.redirectToWebSite(AboutActivity.this,
                 AppLink.Website.getHomeUrl(getApplicationContext(), "about_activity")));
 
-        final TextView forumAdguardComLinkTextView = findViewById(R.id.forumAdguardComLinkTextView);
-        forumAdguardComLinkTextView.setOnClickListener(v -> NavigationHelper.redirectToWebSite(AboutActivity.this,
-                AppLink.Website.getForumUrl(getApplicationContext(), "about_activity")));
-
         final TextView githubLinkTextView = findViewById(R.id.githubLinkTextView);
         githubLinkTextView.setOnClickListener(v -> NavigationHelper.redirectToWebSite(AboutActivity.this,
                 AppLink.Github.getHomeUrl(getApplicationContext(), "about_activity")));

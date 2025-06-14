@@ -35,7 +35,6 @@
     <string name="copyrightInfoTextViewText">© 2009–%s. Adguard Software Ltd.\nAlle rettigheter reservert.</string>
     <string name="rateAdguardButtonText">Ranger AdGuard</string>
     <string name="officialSiteLabelText">Offisiell side</string>
-    <string name="forumLabelText">Forum</string>
     <string name="install_browsers">Du har ingen kompatible nettlesere installert! Du kan installere dem fra Google Play:</string>
     <string name="install_samsung_browser">Installer Samsung Internet Browser</string>
     <string name="install_yandex_browser">Installer Yandex Browser</string>

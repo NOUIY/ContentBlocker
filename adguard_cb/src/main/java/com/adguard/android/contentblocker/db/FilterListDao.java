@@ -17,7 +17,10 @@
 package com.adguard.android.contentblocker.db;
 
 
-import com.adguard.android.contentblocker.model.FilterList;
+import androidx.annotation.Nullable;
+
+import com.adguard.lite.sdk.model.FilterList;
+import com.adguard.lite.sdk.model.FiltersI18nJsonDto;
 
 import java.util.List;
 
@@ -63,8 +66,14 @@ public interface FilterListDao {
     void updateFilterEnabled(FilterList filter, boolean enabled);
 
     /**
-     * Update filter id DB
+     * Update filter in DB
      * @param filter filter with new info
      */
     void updateFilter(FilterList filter);
+
+    /**
+     * Updates filters localizations in DB
+     * @param dto {@link FiltersI18nJsonDto}
+     */
+    void updateLocalizations(@Nullable FiltersI18nJsonDto dto);
 }

@@ -35,7 +35,6 @@
     <string name="copyrightInfoTextViewText">© 2009–%s. Adguard Software Ltd.\nMinden jog fenntartva.</string>
     <string name="rateAdguardButtonText">AdGuard Értékelése</string>
     <string name="officialSiteLabelText">Hivatalos Oldal</string>
-    <string name="forumLabelText">Fórum</string>
     <string name="install_browsers">Nem támogatott böngésző! Google Playről telepíthet:</string>
     <string name="install_samsung_browser">Samsung Internet Telepítése</string>
     <string name="install_yandex_browser">Yandex Böngésző Telepítése</string>

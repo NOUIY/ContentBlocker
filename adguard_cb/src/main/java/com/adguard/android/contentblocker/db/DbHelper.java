@@ -25,6 +25,7 @@ import android.preference.PreferenceManager;
 import com.adguard.android.contentblocker.commons.RawResources;
 import com.adguard.android.contentblocker.service.PreferencesService;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -155,7 +156,7 @@ public class DbHelper extends SQLiteOpenHelper {
                 String oldUserRulesKey = "user_rules";
                 if (sharedPreferences.contains(oldUserRulesKey)) {
                     Set<String> oldUserRules = sharedPreferences.getStringSet(oldUserRulesKey, new HashSet<String>());
-                    if (!oldUserRules.isEmpty()) {
+                    if (CollectionUtils.isNotEmpty(oldUserRules)) {
                         String rules = StringUtils.join(oldUserRules, "\n");
 
                         SharedPreferences.Editor editor = sharedPreferences.edit();
